@@ -1,3 +1,6 @@
 .idea
 .DS_Store
 percolation.iml
+/bin/
+.classpath
+.project

@@ -29,5 +29,7 @@ public class Percolation {
         topIndex = 0;
 
         bottomIndex = 0;
+        
+        int temp = 0;
     }
 }
