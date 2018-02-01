@@ -18,10 +18,25 @@ public class PercolationStats {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        boolean valid = false;
         StdOut.print("Please input the grid size with a number: ");
         int N = input.nextInt();
+        int T = 0;
         StdOut.print("Next input the number of times you want to run the experiment: ");
-        int T = input.nextInt();
+        do {
+            try {
+                T = input.nextInt();
+                input.nextLine();
+                if (T <= 1) {
+                    System.out.print("Please choose a number greater than 1: ");
+                }
+                if (T > 1) {
+                    valid = true;
+                }
+            } catch (Exception e) {
+                System.err.println(e.getStackTrace());
+            }
+        } while (!valid);
         StdOut.printf("%n%n%s%n", "Great hold on while we crunch the numbers.");
         PercolationStats percStats = new PercolationStats(N, T);
         StdOut.printf("The mean is: %f%nThe standard deviation is: %f%nThe confidence low is: %f%nThe confidence high is: %f",

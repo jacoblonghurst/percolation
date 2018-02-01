@@ -5,3 +5,4 @@ percolation.iml
 .classpath
 .project
 algs4.jar
+out/
