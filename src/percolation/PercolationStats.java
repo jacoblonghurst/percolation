@@ -14,8 +14,9 @@ public class PercolationStats {
 
     private Percolation perc; // Declare the percolation variable
     private double[] stats; // Keep track of the statistics we are finding out
-    private int expCount;
+    private int expCount; // Keep track of the number of times you wanted to run the program.
 
+    // This is just the main
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         boolean valid = false;
@@ -23,7 +24,10 @@ public class PercolationStats {
         int N = input.nextInt();
         int T = 0;
         StdOut.print("Next input the number of times you want to run the experiment: ");
+        // All the above was to handle user input
         do {
+            // All the below is to make sure they don't pick 1 for run times or else it will throw a NaN
+            // aka. divide by zero.
             try {
                 T = input.nextInt();
                 input.nextLine();
@@ -38,6 +42,7 @@ public class PercolationStats {
             }
         } while (!valid);
         StdOut.printf("%n%n%s%n", "Great hold on while we crunch the numbers.");
+        // Now we create our perc stats and run the numbers.
         PercolationStats percStats = new PercolationStats(N, T);
         StdOut.printf("The mean is: %f%nThe standard deviation is: %f%nThe confidence low is: %f%nThe confidence high is: %f",
                 percStats.mean(), percStats.stddev(), percStats.confidenceLow(), percStats.confidenceHigh());
@@ -45,8 +50,8 @@ public class PercolationStats {
     }
 
     /**
-     * @param N defines the grid size N * N
-     * @param T defines the number of times to run the statistics
+     * @param N The GRID!
+     * @param T How many times we gonna run this bad boy??
      */
     public PercolationStats(int N, int T) {
         if (N <= 0 || T <= 0) {
@@ -72,23 +77,31 @@ public class PercolationStats {
     }
 
     /**
-     * @return the mean of the percolation
+     * @return The MEAN!
      */
     public double mean() {
         return StdStats.mean(stats);
     }
 
     /**
-     * @return the standard deviation
+     * @return The Standard Deviation!!
      */
     public double stddev() {
         return StdStats.stddev(stats);
     }
 
+    /**
+     *
+     * @return How confident are we??
+     */
     public double confidenceLow() {
         return this.mean() - ((1.96 * this.stddev()) / Math.sqrt(expCount));
     }
 
+    /**
+     *
+     * @return Clearly, we are very confident..
+     */
     public double confidenceHigh() {
         return this.mean() + ((1.96 * this.stddev()) / Math.sqrt(expCount));
     }
